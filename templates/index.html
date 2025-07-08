@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>TODO App - FastAPI</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 600px; margin: 50px auto; }
+        h1 { color: #0078D4; }
+        form { margin: 10px 0; }
+    </style>
+</head>
+<body>
+    <h1>🚀 TODO App</h1>
+    <form method="post" action="/add">
+        <input type="text" name="task" placeholder="New task..." required>
+        <button type="submit">Add</button>
+    </form>
+
+    <ul>
+        {% for task in todos %}
+        <li>
+            {{ task }}
+            <form method="post" action="/delete" style="display:inline;">
+                <input type="hidden" name="index" value="{{ loop.index0 }}">
+                <button type="submit">Delete</button>
+            </form>
+        </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
